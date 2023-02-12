@@ -1,3 +1,4 @@
+import 'package:app1/result.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/quiz.dart';
 
@@ -56,9 +57,7 @@ class _MyAppState extends State<MyApp> {
           width: double.infinity,
           margin: const EdgeInsets.all(10.5),
           child: Quiz(_questions,_answerQuestions,_questionIndex)
-        ): const Center(
-          child: Text('You did it'),
-        ),
+        ): Result()
       ),
     );
   }
