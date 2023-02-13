@@ -36,13 +36,18 @@ class _MyAppState extends State<MyApp> {
   ];
 
   void _answerQuestions(String answer) {
+    if (answer == _questions[_questionIndex]['answer']) {
+      _scores += 10;
+    }
     setState(() {
-      if (answer == _questions[_questionIndex]['answer']) {
-        _scores += 10;
-        print(_scores);
-      }
-
       _questionIndex = _questionIndex + 1;
+    });
+  }
+
+  void resetQuiz() {
+    setState(() {
+      _scores = 0;
+      _questionIndex = 0;
     });
   }
 
@@ -58,7 +63,7 @@ class _MyAppState extends State<MyApp> {
                   width: double.infinity,
                   margin: const EdgeInsets.all(10.5),
                   child: Quiz(_questions, _answerQuestions, _questionIndex))
-              : Result(_scores)),
+              : Result(_scores, resetQuiz)),
     );
   }
 }
