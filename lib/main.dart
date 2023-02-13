@@ -2,7 +2,6 @@ import 'package:app1/result.dart';
 import 'package:flutter/material.dart';
 import 'package:app1/quiz.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -16,49 +15,49 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _scores = 0;
 
   final _questions = const [
     {
       'questionText': 'What\'s your name',
-      'answers': ['Abubakar', 'Abdullahi', 'Aliyu', 'Gwabare']
+      'options': ['Abubakar', 'Abdullahi', 'Aliyu', 'Gwabare'],
+      'answer': 'Abubakar'
     },
     {
       'questionText': 'How old am i now ?',
-      'answers': ["25", "30", "26", "29"]
+      'options': ["25", "30", "26", "29"],
+      'answer': '26'
     },
     {
       'questionText': 'Whats my professional name',
-      'answers': ['Kopat', 'Gwabstech Solutions', 'Aliyu', 'Gwabare']
+      'options': ['Kopat', 'Gwabstech Solutions', 'Aliyu', 'Gwabare'],
+      'answer': 'Gwabstech Solutions'
     },
   ];
 
-  void _answerQuestions() {
-
-      setState(() {
-        _questionIndex = _questionIndex + 1;
-      });
-      if (_questionIndex < _questions.length){
-        print('We  have  question.....?');
-      }else{
-        print('We dont have any ');
-       // _questionIndex = 0;
-      }
-
+  void _answerQuestions(String answer) {
+    ;
+    if (answer == _questions[_questionIndex]['answer']) {
+      _scores = _scores + 10;
+    }
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Golden Odds"),
-        ),
-        body: _questionIndex < _questions.length? Container(
-          width: double.infinity,
-          margin: const EdgeInsets.all(10.5),
-          child: Quiz(_questions,_answerQuestions,_questionIndex)
-        ): Result()
-      ),
+          appBar: AppBar(
+            title: const Text("Golden Odds"),
+          ),
+          body: _questionIndex < _questions.length
+              ? Container(
+                  width: double.infinity,
+                  margin: const EdgeInsets.all(10.5),
+                  child: Quiz(_questions, _answerQuestions, _questionIndex))
+              : Result(_scores)),
     );
   }
 }
