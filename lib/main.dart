@@ -36,11 +36,12 @@ class _MyAppState extends State<MyApp> {
   ];
 
   void _answerQuestions(String answer) {
-    ;
-    if (answer == _questions[_questionIndex]['answer']) {
-      _scores = _scores + 10;
-    }
     setState(() {
+      if (answer == _questions[_questionIndex]['answer']) {
+        _scores += 10;
+        print(_scores);
+      }
+
       _questionIndex = _questionIndex + 1;
     });
   }

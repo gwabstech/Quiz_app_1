@@ -15,7 +15,7 @@ class Quiz extends StatelessWidget {
         Question(questions[qIndex]['questionText'] as String),
         ...(questions[qIndex]['options'] as List<String>).map((options) {
           return Answer(
-              selectHandler: () => answerQuestion(questions[qIndex]['answer']),
+              selectHandler: () => answerQuestion(options),
               answerText: options);
         }).toList()
       ],
